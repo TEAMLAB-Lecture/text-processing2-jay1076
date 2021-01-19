@@ -100,6 +100,13 @@ def to_camel_case(underscore_str):
     """
     l=len(underscore_str)
     s=""
+    cnt=0
+    for k in range(0, l):
+        if ord(underscore_str[k])==95:
+            cnt+=1
+    if cnt==0:
+        return underscore_str
+
     check=0
     for k in range(0, l):
         if ord(underscore_str[k])==95:
@@ -120,11 +127,8 @@ def to_camel_case(underscore_str):
                 check=0
             else :
                 if ord(underscore_str[k])>64 and ord(underscore_str[k])<91:
-                    if ord(underscore_str[k-1])!=95 and ord(underscore_str[k+1])!=95:
-                        s+=underscore_str[k]
-                    else:
-                        tmp=ord(underscore_str[k])+32
-                        s+=chr(tmp)
+                    tmp=ord(underscore_str[k])+32
+                    s+=chr(tmp)
                 else:
                     s+=underscore_str[k]
 
