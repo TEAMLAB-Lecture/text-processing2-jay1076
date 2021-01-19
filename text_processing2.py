@@ -28,7 +28,41 @@ def digits_to_words(input_string):
             >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
-    digit_string = None
+    l=len(input_string)
+    s=""
+    if l==0:
+        return s
+    for k in range(0, l):
+        if ord(input_string[k])>47 and ord(input_string[k])<58:
+            s+=input_string[k]
+    m=len(s)
+    r=""
+    for n in range(0, m):
+        if n!=0:
+            r+=chr(32)
+        
+        if s[n]=="0":
+            r+="zero"
+        elif s[n]=="1":
+            r+="one"
+        elif s[n]=="2":
+            r+="two"
+        elif s[n]=="3":
+            r+="three"        
+        elif s[n]=="4":
+            r+="four"        
+        elif s[n]=="5":
+            r+="five"        
+        elif s[n]=="6":
+            r+="six"        
+        elif s[n]=="7":
+            r+="seven"        
+        elif s[n]=="8":
+            r+="eight"        
+        elif s[n]=="9":
+            r+="nine"
+
+    digit_string = r
     return digit_string
 
 
@@ -64,5 +98,38 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    camelcase_str = None
+    l=len(underscore_str)
+    s=""
+    check=0
+    for k in range(0, l):
+        if ord(underscore_str[k])==95:
+            if k>1 and k<l-1:
+                if ord(underscore_str[k-1])!=95:
+                    if k==l-2:
+                        if ord(underscore_str[k+1])!=95:
+                            check=1
+                    else:
+                        check=1
+        else :
+            if check==1:
+                if ord(underscore_str[k])>96 and ord(underscore_str[k])<123:
+                    tmp=ord(underscore_str[k])-32
+                    s+=chr(tmp)
+                else :
+                    s+=underscore_str[k]
+                check=0
+            else :
+                if ord(underscore_str[k])>64 and ord(underscore_str[k])<91:
+                    tmp=ord(underscore_str[k])+32
+                    s+=chr(tmp)
+                else:
+                    s+=underscore_str[k]
+
+    if len(s)==0:
+        return s
+
+    if s[len(s)-1]=="_":
+        camelcase_str = s[:len(s)-1]
+    else:
+        camelcase_str = s
     return camelcase_str
