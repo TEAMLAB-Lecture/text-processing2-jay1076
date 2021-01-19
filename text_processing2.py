@@ -120,8 +120,11 @@ def to_camel_case(underscore_str):
                 check=0
             else :
                 if ord(underscore_str[k])>64 and ord(underscore_str[k])<91:
-                    tmp=ord(underscore_str[k])+32
-                    s+=chr(tmp)
+                    if ord(underscore_str[k-1])!=95 and ord(underscore_str[k+1])!=95:
+                        s+=underscore_str[k]
+                    else:
+                        tmp=ord(underscore_str[k])+32
+                        s+=chr(tmp)
                 else:
                     s+=underscore_str[k]
 
